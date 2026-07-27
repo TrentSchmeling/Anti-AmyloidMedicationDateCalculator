@@ -5,28 +5,32 @@
 <h1>Anti-Amyloid Medication Infusion Dates</h1>
 
 <p id="infusionParameters">
-<form action="JavaScript:calculateInfusionDates()">
- <label for="antiAmyloidMedication">Anti-amyloid medication:</label>
- <select name="antiAmyloidMedication" id="antiAmyloidMedication" onchange="infusionNumberMax()">
-  <option value="lecanemab">Leqembi (lecanemab)</option>
-  <option value="donanemab">Kisunla (donanemab)</option>
- </select>
- <br><br>
- <label for="firstInfusion">Infusion #, date:</label>
- <input type="number" id="infusionNumber" min="1" style="width: 60px" value="1">
- <input type="date" id="firstInfusionDate">
- <br><br>
- <label for="user">User:</label>
- <select name="user" id="user">
-  <option value="CarlyCorcoran" data-print="Carly Corcoran, RN">Corcoran, Carly [RN]</option>
-  <option value="TrentSchmeling" data-print="Trent R Schmeling, MD">Schmeling, Trent [MD]</option>
- </select>
- <br><br>
- <input type="submit" value="Submit">
-</form>
+ <form action="JavaScript:calculateInfusionDates()">
+  <label for="antiAmyloidMedication">Anti-amyloid medication:</label>
+  <select name="antiAmyloidMedication" id="antiAmyloidMedication" onchange="infusionNumberMax()">
+   <option value="lecanemab">Leqembi (lecanemab)</option>
+   <option value="donanemab">Kisunla (donanemab)</option>
+  </select>
+  <br><br>
+  <label for="firstInfusion">Infusion #, date:</label>
+  <input type="number" id="infusionNumber" min="1" style="width: 60px" value="1">
+  <input type="date" id="firstInfusionDate">
+  <br><br>
+  <label for="user">User:</label>
+  <select name="user" id="user">
+   <option value="CarlyCorcoran" data-print="Carly Corcoran, RN">Corcoran, Carly [RN]</option>
+   <option value="TrentSchmeling" data-print="Trent R Schmeling, MD">Schmeling, Trent [MD]</option>
+  </select>
+  <br><br>
+  <input type="submit" value="Generate note">
+ </form>
 </p>
 
-<p id="copyNote"></p>
+<p id="copyNote">
+ <form action="JavaScript:copyNote()">
+  <input type="submit" id="submit_copyNote" value="Copy note">
+</form>
+</p>
 
 <p id="allInfusionDates"></p>
 
@@ -79,8 +83,6 @@
   let dateNowGMT = new Date();
   let date1UTC = new Date(document.getElementById("firstInfusionDate").valueAsDate);
   let date1GMT = new Date(date1UTC.getFullYear(), date1UTC.getMonth(), date1UTC.getDate(), date1UTC.getHours() + date1UTC.getTimezoneOffset() / 60);
-
-  document.getElementById("copyNote").innerHTML = "<form action=\"JavaScript:copyNote()\"><input type=\"submit\" value=\"Copy\"></form>";
 
   document.getElementById("allInfusionDates").innerHTML = "<b>" + formatDate(dateNowGMT, "MM/dd/YY") + " Advocate Aurora Health Anti-amyloid Medication Target Dates</b><br><br>";
 
